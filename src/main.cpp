@@ -2,7 +2,6 @@
 #include <EEPROM.h>
 #include "communicate.hpp"
 #include "screen.hpp"
-#include "canvas.hpp"
 #include "shared_val.hpp"
 #include "draw.hpp"
 #include "bat.hpp"
@@ -19,9 +18,6 @@ void setup() {
   sensor_power_on();
   EEPROM.begin(512);  // 初始化 EEPROM
   screen_init();
-  // 全屏画布：所有模式统一渲染到 PSRAM 里这块 320x240 帧缓冲，再一次性推屏。
-  // 调试抓帧（串口命令 shot）直接读这块内存。
-  canvas_init();
   camera_init();
 
   // 设置当前传感器类型

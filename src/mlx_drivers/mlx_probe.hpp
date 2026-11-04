@@ -299,7 +299,6 @@ void probe_error_detect(){
 
 void probe_loop_mlx(){
 
-    if (flag_in_photo_mode){return;}
     // 静态数组：用于保存完整的画面（合成缓冲区）
     // 即使双缓冲切走了，这里的数据依然保留，用于“拼凑”下一帧
     // static float mlx_composition_buffer[834]; 

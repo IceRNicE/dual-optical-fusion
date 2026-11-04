@@ -90,9 +90,7 @@ inline void update_sensor_params() {
  bool flag_use_kalman = false;  // 是否使用卡尔曼滤波器
  bool use_upsample = true;  // 是否使用双线性插值
  bool flag_trace_max = true;  // 是否使用最热点追踪
- bool flag_in_photo_mode = false;  // 是否正处于照相模式(画面暂停)
  bool flag_show_cursor = false; // 是否显示温度采集指针（中心测温点，默认关闭）
- bool flag_clear_cursor = false; // 是否清除光标
  bool flag_sensor_ok = false;  // 传感器是否初始化成功
  uint8_t prob_status = PROB_CONNECTING;  // 探头当前状态
 
