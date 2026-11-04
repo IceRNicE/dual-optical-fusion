@@ -6,6 +6,7 @@
 #include "MLX90640_I2C_Driver.hpp"
 #include "MLX90641_API.hpp"
 #include "MLX90641_I2C_Driver.hpp"
+#include "../cal.hpp"
 #include "../shared_val.hpp"
 #include "../kalman_filter.hpp"
 
@@ -354,6 +355,14 @@ void probe_loop_mlx(){
         tr = Ta - TA_SHIFT;
         emissivity = 0.95;
         MLX90641_CalculateTo(mlx90640Frame, &mlx90641, emissivity, tr, currentWriteTarget);
+    }
+
+    // 应用温度校准：落在校准区间内的点做 T*gain+offset
+    if (cal_count > 0) {
+        uint16_t cal_pix = mlx_pixel_count();
+        for (int i = 0; i < cal_pix; i++) {
+            currentWriteTarget[i] = cal_apply_point(currentWriteTarget[i]);
+        }
     }
 
     // ==========================================

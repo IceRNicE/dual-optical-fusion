@@ -175,6 +175,9 @@ void serial_loop(){
                 Serial.println("SHOT FAIL");
             }
 
+        } else if (input.startsWith("cal")) {
+            cal_cli(input);
+
         } else if (input == "bat") {
             extern float bat_v;
             Serial.printf("BAT %.2fV %d%%\n", bat_v, vbat_percent);

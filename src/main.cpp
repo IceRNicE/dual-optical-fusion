@@ -8,11 +8,13 @@
 #include "bat.hpp"
 #include "camera.hpp"
 #include "mlx_drivers/mlx_probe.hpp"
+#include "cal.hpp"
 #include "fusion.hpp"
 #include "button.hpp"
 void setup() {
   button_init();
   serial_start();
+  cal_load();   // 载入温度校准区间
   bat_init();
   sensor_power_on();
   EEPROM.begin(512);  // 初始化 EEPROM
